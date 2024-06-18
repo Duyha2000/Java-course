@@ -1,4 +1,4 @@
-package ra.business;
+package ra.basic;
 
 import java.util.Arrays;
 import java.util.Scanner;

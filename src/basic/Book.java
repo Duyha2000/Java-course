@@ -1,4 +1,4 @@
-package ra.business;
+package ra.basic;
 
 public class Book {
     private int bookId;
