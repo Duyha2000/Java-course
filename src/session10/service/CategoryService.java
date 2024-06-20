@@ -21,11 +21,11 @@ public class CategoryService {
 
         while (true) {
             if (categories.length > 0) {
-                System.out.println("Danh sách các tên thể loại sách hiện có:");
-                for (Category c : categories) System.out.println(c.getName());
+                System.out.println(ColorCode.ANSI_BLUE + "Danh sách các tên thể loại sách hiện có:");
+                for (Category c : categories) System.out.println(ColorCode.ANSI_BLUE + c.getName());
             }
 
-            System.out.println("Nhập tên thể loại sách: ");
+            System.out.println(ColorCode.ANSI_BLUE + "Nhập tên thể loại sách: ");
             name = scanner.nextLine().trim();
             boolean isCheck = false;
 
@@ -45,7 +45,7 @@ public class CategoryService {
         }
 
         while (true) {
-            System.out.println("Nhập trạng thái thể loại sách: ");
+            System.out.println(ColorCode.ANSI_BLUE + "Nhập trạng thái thể loại sách: ");
             status = scanner.nextLine().trim();
             if (Pattern.matches("(?i)true|false", status)) {
                 category.setStatus(Boolean.parseBoolean(status));
@@ -61,7 +61,7 @@ public class CategoryService {
     public void addCatergory() {
         Category[] newCategories = new Category[categories.length + 1];
 
-        System.out.println("Thêm mới thể loại sách:");
+        System.out.println(ColorCode.ANSI_BLUE + "Thêm mới thể loại sách:");
         Category category = inputData();
 
         // Copy old categories to new array
@@ -78,11 +78,11 @@ public class CategoryService {
     public void displayCategories() {
         Arrays.sort(categories, Comparator.comparing(Category::getName));
         if (categories.length == 0) {
-            System.out.println("Không có thể loại sách nào");
+            System.err.println("Không có thể loại sách nào");
             return;
         }
         for (Category category : categories) {
-            System.out.println(category.getId() + " " + category.getName() + " " + category.isStatus());
+            System.out.println(ColorCode.ANSI_BLUE + category.getId() + " " + category.getName() + " " + category.isStatus());
         }
     }
 
@@ -95,14 +95,15 @@ public class CategoryService {
                     count++;
                 }
             }
-            System.out.println(category.getName() + ": " + count);
+            System.out.println(ColorCode.ANSI_BLUE + category.getName() + ": " + count);
         }
     }
 
     // 4. Update thể loại:
     public void updateCategory() {
-        for (Category category : categories) System.out.println(category.getId() + " " + category.getName());
-        System.out.println("Nhập id sách cần cập nhật");
+        for (Category category : categories)
+            System.out.println(ColorCode.ANSI_BLUE + category.getId() + " " + category.getName());
+        System.out.println(ColorCode.ANSI_BLUE + "Nhập id sách cần cập nhật");
         int idUpdate = Integer.parseInt(scanner.nextLine());
         boolean isFound = false;
         int indexUpdate = 0;
@@ -120,12 +121,12 @@ public class CategoryService {
     // 5.  Xóa thể loại : trước khi xóa, cần kiểm tra trong thể loại có sách đang tham chiếu tới thể loại đó hay không? Nếu có thông báo “Thể loại đang có sách”, không thực hiện xóa thể loại.
     public void deleteCategories() {
         if (categories.length == 0) return;
-        System.out.println("Các thể loại hiện có:");
+        System.out.println(ColorCode.ANSI_BLUE + "Các thể loại hiện có:");
         for (Category category : categories) {
-            System.out.println(category.getId() + " " + category.getName());
+            System.out.println(ColorCode.ANSI_BLUE + category.getId() + " " + category.getName());
         }
 
-        System.out.println("Nhập id thể loại cần xóa:");
+        System.out.println(ColorCode.ANSI_BLUE + "Nhập id thể loại cần xóa:");
         int idDelete = Integer.parseInt(scanner.nextLine());
         boolean isFound = false;
         int indexDelete = 0;
@@ -155,7 +156,7 @@ public class CategoryService {
             System.arraycopy(categories, 0, newCategories, 0, indexDelete);
             System.arraycopy(categories, indexDelete + 1, newCategories, indexDelete, categories.length - indexDelete - 1);
 
-            System.out.println("Xóa thành công");
+            System.out.println(ColorCode.ANSI_BLUE + "Xóa thành công");
             categories = newCategories;
         }
     }

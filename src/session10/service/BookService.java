@@ -228,7 +228,7 @@ public class BookService {
                     System.out.println("Tạm biệt!");
                     isExit = true;
                 }
-                default -> System.out.println("Lựa chọn sai, mời nhập lại!");
+                default -> System.out.println(ColorCode.ANSI_BLUE + "Lựa chọn sai, mời nhập lại!");
             }
         }
     }
