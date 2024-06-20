@@ -1,7 +1,8 @@
-package advance.ra.run;
+package hackathon.advance.ra.run;
 
-import advance.ra.service.SingerService;
-import advance.ra.service.SongService;
+
+import hackathon.advance.ra.service.SingerService;
+import hackathon.advance.ra.service.SongService;
 
 import java.util.Scanner;
 

@@ -1,4 +1,4 @@
-package advance.ra.model;
+package hackathon.advance.ra.model;
 
 public class Singer {
     // trên window: ctrl D - alt l

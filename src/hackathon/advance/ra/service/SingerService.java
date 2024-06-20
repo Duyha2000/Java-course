@@ -1,6 +1,6 @@
-package advance.ra.service;
+package hackathon.advance.ra.service;
 
-import advance.ra.model.Singer;
+import hackathon.advance.ra.model.Singer;
 
 import java.util.Scanner;
 

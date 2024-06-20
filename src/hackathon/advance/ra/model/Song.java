@@ -1,4 +1,4 @@
-package advance.ra.model;
+package hackathon.advance.ra.model;
 
 import java.time.LocalDate;
 
