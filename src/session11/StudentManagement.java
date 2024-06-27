@@ -1,51 +1,50 @@
 package session11;
 
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
-import java.util.Scanner;
+import java.util.LinkedList;
 
 public class StudentManagement {
+    public static LinkedList<Student> students = new LinkedList<>();
 
-    public static List<Student> students = new ArrayList<>();
+    public void addStudent(Student student) {
+        students.add(student);
+    }
 
-    // show All:
-    public void showAllStudent() {
-        if (!students.isEmpty()) {
+    public void showAll() {
+        if (students.isEmpty()) System.err.println("K co hsinh nao");
+        else {
             for (Student student : students) {
                 System.out.println(student);
             }
         }
     }
 
-    // add student:
-    public void addStudent(Student student) {
-        students.add(student);
-    }
-
-    // delete student:
     public void removeStudent(int studentId) {
-        int index = -1;
         for (int i = 0; i < students.size(); i++) {
             if (students.get(i).getStudentId() == studentId) {
-                index = i;
-                break;
+                students.remove(i);
+                System.out.println("Xoa thanh cong!!!");
+                return;
             }
         }
-        if (index == -1) System.err.println("Ko tim thay id");
-        else students.remove(index);
+        System.err.println("Ko tim thay id");
     }
 
-    // Find student by Name (*)
-    public void searchStudentByName(Scanner scanner) {
-        System.out.println("Nhập tên học sinh cần tìm kiếm: ");
-        String name = scanner.nextLine().toLowerCase().trim();
-        for (Student student : students) {
-            if (student.getName().toLowerCase().contains(name)) System.out.println(student);
-        }
+    //    remove first student:
+    public void removeLastStudent() {
+        students.poll();
+        System.out.println("Student sau khi xoa");
+        showAll();
     }
 
-    // findStudentById
+    // add last student:
+    public void addLastStudent(Student student) {
+        students.offer(student);
+        System.out.println("Student sau khi them moi");
+        showAll();
+    }
+
+
     public Student findStudentById(int studentId) {
         boolean isCheck = false;
         Student studentFind = null;
@@ -56,27 +55,21 @@ public class StudentManagement {
                 break;
             }
         }
-        if (!isCheck) {
-            System.err.println("Không tìm thấy sinh viên");
-            return null;
+        if (isCheck) {
+            System.out.println("Tim thay sinh vien");
+            return studentFind;
         }
-        return studentFind;
+        return null;
     }
 
-    // getAverageScore:
     public double getAverageScore() {
-        double sum = 0;
-        for (Student student : students) {
-            sum += student.getAverageScore();
-        }
-        return sum;
+        double sumAvg = 0;
+        for (Student student : students) sumAvg += student.getAverageScore();
+        return sumAvg / students.size();
     }
 
-
-    //sort student by name
     public void sortByScore() {
-        Comparator.comparing(Student::getAverageScore);
+        students.sort(Comparator.comparing(Student::getAverageScore));
+        showAll();
     }
-    //
-
 }

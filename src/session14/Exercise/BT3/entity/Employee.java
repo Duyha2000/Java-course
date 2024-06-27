@@ -1,0 +1,140 @@
+package session14.Exercise.BT3.entity;
+
+import session14.Exercise.BT3.util.InputMethods;
+
+import java.time.LocalDate;
+
+import static session14.Exercise.BT3.business.DepartmentBusiness.departments;
+import static session14.Exercise.BT3.business.EmployeeBusiness.employees;
+
+public class Employee implements IManagement {
+    private static int autoId = 0;
+    private String employeeId;
+    private String employeeName;
+    private LocalDate birthday;
+    private boolean sex;
+    private double salary;
+    private Employee manager;
+    private Department department;
+
+    public String getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(String employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
+    public LocalDate getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(LocalDate birthday) {
+        this.birthday = birthday;
+    }
+
+    public boolean isSex() {
+        return sex;
+    }
+
+    public void setSex(boolean sex) {
+        this.sex = sex;
+    }
+
+    public double getSalary() {
+        return salary;
+    }
+
+    public void setSalary(double salary) {
+        this.salary = salary;
+    }
+
+    public Employee getManager() {
+        return manager;
+    }
+
+    public void setManager(Employee manager) {
+        this.manager = manager;
+    }
+
+    public Department getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(Department department) {
+        this.department = department;
+    }
+
+    public Employee() {
+        this.employeeId = String.format("E%05d", ++autoId);
+    }
+
+    public Employee(String employeeName, LocalDate birthday, boolean sex, double salary, Employee manager, Department department) {
+        this.employeeName = employeeName;
+        this.birthday = birthday;
+        this.sex = sex;
+        this.salary = salary;
+        this.manager = manager;
+        this.department = department;
+    }
+
+    @Override
+    public void inputData() {
+        System.out.println("Enter employee's information: ");
+        System.out.print("Employee's name: ");
+        this.employeeName = InputMethods.getString();
+        System.out.print("Birthday: ");
+        this.birthday = InputMethods.getDate();
+        System.out.println("Sex: ");
+        this.sex = InputMethods.getBoolean();
+        System.out.print("Salary: ");
+        this.salary = InputMethods.getDouble();
+
+//
+        System.out.println("Select Manager: ");
+        if (employees != null && !employees.isEmpty()) {
+            for (int i = 1; i <= employees.size(); i++) {
+                System.out.printf("|STT : %-3s | Name : %-15s |\n", i, employees.get(i - 1).getEmployeeName());
+            }
+            System.out.println("Enter the number corresponding to the manager:");
+            while (true) {
+                int index = InputMethods.getInteger();
+                if (index >= 1 && index <= employees.size()) {
+                    this.manager = employees.get(index - 1);
+                    break;
+                } else {
+                    System.err.println("Invalid input, please try again.");
+                }
+            }
+        } else {
+            System.out.println("No employees available to assign as manager.");
+        }
+
+        // chọn danh mục
+        System.out.println("Danh sách các phòng ban:");
+        for (int i = 1; i <= departments.size(); i++) {
+            System.out.printf("|STT : %-3s | Name : %-15s |\n", i, departments.get(i - 1).getDepartmentName());
+        }
+        System.out.println("Moi ban chon các danh sách phòng ban");
+        while (true) {
+            int index = InputMethods.getInteger();
+            if (index >= 1 && index <= departments.size()) {
+                this.department = departments.get(index - 1);
+                break;
+            } else System.err.println("Nhap khong chinh xac , vui long nhap lai");
+        }
+    }
+
+    @Override
+    public void displayData() {
+        System.out.printf("%-10s%-20s%-15s%-10s%-10s%-10s%-10s\n", employeeId, employeeName, birthday, sex, salary, manager, department);
+    }
+}
