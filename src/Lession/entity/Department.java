@@ -1,23 +1,14 @@
-package session14.Exercise.BT3.entity;
+package Lession.entity;
 
+import session14.Exercise.BT3.entity.IManagement;
 import session14.Exercise.BT3.util.InputMethods;
 
 public class Department implements IManagement {
-    private static int autoId = 0;
+    //    Attribute:
     private String departmentId, departmentName;
+    private static int autoId = 0;
     private int totalMembers;
 
-    public Department() {
-        this.departmentId = String.format("D%04d", ++autoId);
-    }
-
-    public static int getAutoId() {
-        return autoId;
-    }
-
-    public static void setAutoId(int autoId) {
-        Department.autoId = autoId;
-    }
 
     public String getDepartmentId() {
         return departmentId;
@@ -43,22 +34,26 @@ public class Department implements IManagement {
         this.totalMembers = totalMembers;
     }
 
-    public Department(String departmentName, int totalMembers) {
+    public Department() {
+        this.departmentId = String.format("D%04d", ++autoId);
+    }
+
+    public Department(String departmentId, String departmentName, int totalMembers) {
+        this.departmentId = departmentId;
         this.departmentName = departmentName;
         this.totalMembers = totalMembers;
     }
 
     @Override
     public void inputData() {
-        System.out.println("Department Name: " + departmentName);
+        System.out.println("Nhập tên phòng ban:");
         this.departmentName = InputMethods.getString();
-        System.out.println("Total Members: " + totalMembers);
+        System.out.println("Nhập tổng số nhân viên:");
         this.totalMembers = InputMethods.getInteger();
-
     }
 
     @Override
     public void displayData() {
-        System.out.printf("|ID : %-4s | Department Name: %-15s | Total Members : %10s |\n", departmentId, departmentName, totalMembers);
+        System.out.printf("|ID : %-4s | Name: %-6s | Total members : %2s |\n", departmentId, departmentName, totalMembers);
     }
 }
