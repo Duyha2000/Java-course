@@ -43,6 +43,5 @@ public class BT2 {
         long elapsedDays = Math.abs(ChronoUnit.DAYS.between(date1, date2));
 
         System.out.println(elapsedDays);
-
     }
 }

@@ -116,6 +116,7 @@ public class Employee implements IManagement {
         for (int i = 1; i < employees.size(); i++) {
             System.out.printf("|STT : %-3s | Name : %-15s |\n", i, employees.get(i - 1).getEmployeeName());
         }
+        
         System.out.println("Chọn quản lý nhân viên: ");
         while (true) {
             int index = InputMethods.getInteger();

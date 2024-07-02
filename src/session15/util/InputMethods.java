@@ -1,4 +1,4 @@
-package session14.Exercise.BT3.util;
+package session15.util;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -135,7 +135,7 @@ public final class InputMethods {
             try {
                 return LocalDate.parse(getInput(), DateTimeFormatter.ofPattern("dd/MM/yyyy"));
             } catch (DateTimeParseException errException) {
-                System.err.println("Ngày tháng không đúng định dạng! Vui lòng nhập lại");
+                System.err.println("ngayf thangs ko dung dinh dang");
             }
         }
     }

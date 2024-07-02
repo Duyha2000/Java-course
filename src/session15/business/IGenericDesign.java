@@ -1,4 +1,4 @@
-package Lession.business;
+package session15.business;
 
 import java.util.List;
 
@@ -17,4 +17,5 @@ public interface IGenericDesign<T, E> {
 
     //    Tìm tất cả:
     List<T> findAll();
+
 }
